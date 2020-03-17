@@ -21,10 +21,51 @@ const Sidebar = () => {
       <style jsx>{`
         .sidebar {
           background-color: #333;
-          flex: 0 0 15%;
+          flex: 0 0 18%;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+        }
+        
+        .side-nav {
+          font-size: 1.4rem;
+          list-style: none;
+          margin-top: 3.5rem;
+        }
+
+        .side-nav__item {
+          position: relative;
+        }
+
+        .side-nav__item:not(:last-child) {
+          margin-bottom: .5rem;
+        }
+
+        .side-nav__item::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 3px;
+          background-color: orangered;
+          transform: scaleY(0);
+          transition: transform .2s,
+                      width: .4s cubic-bezier(1, 0, 0, 1) .2s;
+        }
+
+        .side-nav__item:hover::before {
+          transform: scaleY(1);
+          width: 100%;
+        }
+
+        .side-nav__link:link,
+        .side-nav__link:visited {
+          color: #faf9f9;
+          text-decoration: none;
+          text-transform: uppercase;
+          display: block;
+          padding: 1.5rem 3rem;
         }
 
         .legal {
