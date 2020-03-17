@@ -50,7 +50,7 @@ const Sidebar = ({ dbs }) => {
       <style jsx>{`
         .sidebar {
           background-color: #333;
-          flex: 0 0 18%;
+          flex: 0 0 12%;
           display: flex;
           flex-direction: column;
           justify-content: space-between;

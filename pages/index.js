@@ -1,17 +1,15 @@
 import Head from 'next/head'
 import fetch from 'isomorphic-unfetch'
 import Sidebar from '../components/Sidebar'
+import Layout from '../components/Layout'
 
 const Home = ({ data }) => {
 
   return (
-    <div className='container'>
-      <div className='content'>
-        <Sidebar dbs={data} />
-        <main className='data-view'>
-          temp
-        </main>
-      </div>
+    <div>
+      <Layout data={data}>
+        MAIN CONTENT
+      </Layout>
       <style jsx>{`
         .container {
           max-width: 120rem;
@@ -19,14 +17,6 @@ const Home = ({ data }) => {
           background-color: #f4f2f2;
           box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
           min-height: 50rem;
-        }
-        .content {
-          display: flex;
-        }
-        .data-view {
-          flex: 1;
-          height: 80rem;
-          background-color: orangered;
         }
       `}</style>
       <style jsx global>{`
