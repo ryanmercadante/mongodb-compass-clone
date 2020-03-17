@@ -1,15 +1,13 @@
 import Head from 'next/head'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import fetch from 'isomorphic-unfetch'
 import Sidebar from '../components/Sidebar'
 
-const Home = () => {
+const Home = ({ data }) => {
 
   return (
     <div className='container'>
       <div className='content'>
-        <Sidebar />
+        <Sidebar dbs={data} />
         <main className='data-view'>
           temp
         </main>
@@ -47,6 +45,12 @@ const Home = () => {
       `}</style>
     </div>
   )
+}
+
+Home.getInitialProps = async () => {
+  const res = await fetch('http://localhost:3000/api/databases')
+  const json = await res.json()
+  return { data: json }
 }
 
 export default Home

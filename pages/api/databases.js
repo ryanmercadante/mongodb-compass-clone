@@ -7,13 +7,14 @@ handler.use(middleware)
 
 handler.get(async (req, res) => {
   try {
-    // let db = await req.dbAdmin
-    let doc = await req.db.collection('users').findOne()
-    console.log('database', doc)
+    const { databases } = await req.dbClient.db().admin().listDatabases()
+
+    console.log('database', databases)
+    res.json(databases)
   } catch (err) {
-    console.error('err:', err)
+    console.error('ERROR:', err)
+    res.json({ error: err })
   }
-  res.end('databse')
 })
 
 export default handler
