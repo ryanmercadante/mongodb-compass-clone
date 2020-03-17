@@ -37,7 +37,7 @@ const Sidebar = ({ dbs }) => {
         <ul className='side-nav'>
           {
             dbs.map((db) => (
-              <MenuItem name={db.name} />
+              <MenuItem key={db.name} name={db.name} />
             ))
           }
         </ul>
