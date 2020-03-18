@@ -1,9 +1,12 @@
 import { Fragment } from "react"
+import Link from 'next/link'
 
 const MenuItem = ({ name }) => (
   <Fragment>
     <li className='side-nav__item'>
-      <a className='side-nav__link' href='/'>{name}</a>
+      <Link href='/collections/[name]' as={`/collections/${name}`}>
+        <a className='side-nav__link'>{name}</a>
+      </Link>
     </li>
     <style jsx>{`
       .side-nav__item {
