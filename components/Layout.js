@@ -22,7 +22,7 @@ const Layout = ({ children, data }) => {
         .data-view {
           flex: 1;
           height: 100vh;
-          background-color: orangered;
+          background-color: #ededed;
         }
       `}</style>
     </Fragment>

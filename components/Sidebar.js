@@ -4,7 +4,7 @@ import Link from 'next/link'
 const MenuItem = ({ name }) => (
   <Fragment>
     <li className='side-nav__item'>
-      <Link href='/collections/[name]' as={`/collections/${name}`}>
+      <Link href='/dbs/[name]' as={`/dbs/${name}`}>
         <a className='side-nav__link'>{name}</a>
       </Link>
     </li>

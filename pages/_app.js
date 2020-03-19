@@ -24,6 +24,10 @@ class MyApp extends App {
         * {
           box-sizing: border-box;
         }
+
+        button {
+          cursor: pointer;
+        }
       `}</style>
       </Fragment>
     )

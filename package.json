@@ -16,7 +16,8 @@
     "next": "9.3.0",
     "next-connect": "^0.6.0",
     "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "react-dom": "16.13.0",
+    "swr": "^0.1.18"
   },
   "devDependencies": {
     "@zeit/next-css": "^1.0.1"

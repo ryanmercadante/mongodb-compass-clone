@@ -6,7 +6,7 @@ const Home = ({ data }) => {
   return (
     <div>
       <Layout data={data}>
-        MAIN CONTENT
+        <h1>Collections</h1>
       </Layout>
       <style jsx>{`
         .container {
