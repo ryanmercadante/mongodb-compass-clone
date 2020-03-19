@@ -9,26 +9,26 @@ const fetcher = async (url) => {
   return json
 }
 
-const CollectionItem = ({ name }) => (
+const CollectionItem = ({ name, numOfDocuments, avgDocSize, totalDocSize, numOfIndexes, totalIndexSize }) => (
   <Fragment>
     <div className='collections'>
       <div className='column'>
         <h3>{name}</h3>
       </div>
       <div className='column'>
-        <h3>temp</h3>
+        <h3>{numOfDocuments}</h3>
       </div>
       <div className='column'>
-        <h3>temp</h3>
+        <h3>{avgDocSize} B</h3>
       </div>
       <div className='column'>
-        <h3>temp</h3>
+        <h3>{totalDocSize} B</h3>
       </div>
       <div className='column'>
-        <h3>temp</h3>
+        <h3>{numOfIndexes}</h3>
       </div>
       <div className='column'>
-        <h3>temp</h3>
+        <h3>{totalIndexSize} B</h3>
       </div>
     </div>
     <style jsx>{`
@@ -85,7 +85,7 @@ const Collections = ({ data }) => {
         </div>
       </div>
       {collectionData && collectionData.collections.map((collection) => (
-        <CollectionItem key={collection.info.uuid} {...collection} />
+        <CollectionItem key={collection.uuid} {...collection} />
       ))}
       <style jsx>{`
         h1 {
