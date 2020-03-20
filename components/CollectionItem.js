@@ -1,10 +1,13 @@
+import Link from 'next/link'
 import { Fragment } from 'react'
 
-const CollectionItem = ({ name, numOfDocuments, avgDocSize, totalDocSize, numOfIndexes, totalIndexSize }) => (
+const CollectionItem = ({ name, numOfDocuments, avgDocSize, totalDocSize, numOfIndexes, totalIndexSize, db }) => (
   <Fragment>
     <div className='collections'>
       <div className='column'>
-        <h3>{name}</h3>
+        <Link href='/dbs/collections/[doc]' as={`/dbs/collections/${name}?db=${db}`}>
+          <h3><a>{name}</a></h3>
+        </Link>
       </div>
       <div className='column'>
         <h3>{numOfDocuments}</h3>
@@ -39,6 +42,14 @@ const CollectionItem = ({ name, numOfDocuments, avgDocSize, totalDocSize, numOfI
       }
       .column:first-child {
         padding-left: 10px;
+      }
+      a {
+        cursor: pointer;
+        color: #777;
+      }
+      a:hover {
+        text-decoration: underline;
+        color: #333;
       }
     `}</style>
   </Fragment>

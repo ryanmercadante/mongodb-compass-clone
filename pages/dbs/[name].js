@@ -3,22 +3,18 @@ import Layout from '../../components/Layout'
 import useSWR from 'swr'
 import CollectionItem from '../../components/CollectionItem'
 import CollectionHeader from '../../components/CollectionHeader'
-
-const fetcher = async (url) => {
-  const res = await fetch(url)
-  const json = await res.json()
-  return json
-}
+import fetcher from '../../helpers/fetcher'
 
 const Collections = ({ data }) => {
   const router = useRouter()
-  const { data: collectionData, error } = useSWR(`/api/collections/${router.query.name}`, fetcher)
+  const db = router.query.name
+  const { data: collectionData, error } = useSWR(`/api/collections/${db}`, fetcher)
 
   return (
     <Layout data={data}>
       <CollectionHeader />
       {collectionData && collectionData.collections.map((collection) => (
-        <CollectionItem key={collection.uuid} {...collection} />
+        <CollectionItem key={collection.uuid} {...collection} db={db} />
       ))}
     </Layout>
   )
