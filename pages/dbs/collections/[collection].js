@@ -3,52 +3,8 @@ import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import fetcher from '../../../helpers/fetcher'
+import Document from '../../../components/Document'
 
-const Document = ({ doc }) => {
-
-  return (
-    <Fragment>
-      <div className='document'>
-        {Object.entries(doc).map(([key, value]) => {
-          let newValue = value
-          if (typeof (newValue) === 'string' && key !== '_id') {
-            newValue = `"${newValue}"`
-          }
-          if (key === '_id') {
-            newValue = `ObjectId("${newValue}")`
-          }
-          return (
-            <Fragment>
-              <p className='key'>{key}:&nbsp;
-                <span className='value'>{newValue}</span>
-              </p>
-            </Fragment>
-          )
-        })}
-      </div>
-      <style jsx>{`
-        .document {
-          margin: 1rem 3rem;
-          padding: 1.5rem;
-          background-color: #fff;
-          border-radius: .5rem;
-        }
-        p {
-          margin: 0;
-        }
-        .key {
-          font-weight: 600;
-          font-size: 1.3rem;
-          display: flex;
-        }
-        .value {
-          font-weight: 400;
-          display: flex;
-        }
-      `}</style>
-    </Fragment>
-  )
-}
 
 const Documents = ({ data: sidebar }) => {
   const router = useRouter()
@@ -61,7 +17,7 @@ const Documents = ({ data: sidebar }) => {
         <h1>{db}.{collection}</h1>
         <div className="header">
           <div className='column'>        
-            <h2>Documents!</h2>
+            <h2>Documents</h2>
           </div>
         </div>
         {data && data.documents.map((doc) => (
