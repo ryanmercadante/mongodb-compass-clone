@@ -1,10 +1,25 @@
 import fetch from 'isomorphic-unfetch'
-import Layout from '../components/Layout'
+import { useState } from 'react'
+
+let global_hostname = 'localhost'
+let global_port = '27017'
+
+
+
 
 const Home = ({ data }) => {
+  const [hostname, setHostname] = useState('localhost')
+  const [port, setPort] = useState('27017')
 
-  const handleOnSubmit = () => {
+  const handleOnSubmit = (e) => {
+    e.preventDefault()
     console.log('form submit')
+    if (hostname !== '' || port !== '') {
+      console.log('config before', config)
+      config.hostname = hostname
+      config.port = port
+      console.log('config after', config)
+    }
   }
 
   return (
@@ -14,11 +29,11 @@ const Home = ({ data }) => {
         <form onSubmit={handleOnSubmit} className='form'>
           <div className='input-block'>
             <label>Hostname</label>
-            <input tyle='text' placeholder='localhost' />
+            <input tyle='text' placeholder='localhost' value={hostname} onChange={(e) => setHostname(e.target.value)} />
           </div>
           <div className='input-block'>
             <label>Port</label>
-            <input tyle='text' placeholder='27017' />
+            <input tyle='text' placeholder='27017' value={port} onChange={(e) => setPort(e.target.value)} />
           </div>
           <button>Connect</button>
         </form>
@@ -73,10 +88,17 @@ const Home = ({ data }) => {
   )
 }
 
-Home.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3000/api/databases')
-  const json = await res.json()
-  return { data: json }
+export const config = {
+  hostname: global_hostname,
+  port: global_port,
 }
+
+console.log('config', config)
+
+// Home.getInitialProps = async () => {
+//   const res = await fetch('http://localhost:3000/api/databases')
+//   const json = await res.json()
+//   return { data: json }
+// }
 
 export default Home
