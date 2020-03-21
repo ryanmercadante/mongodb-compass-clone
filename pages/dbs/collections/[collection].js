@@ -2,6 +2,7 @@ import Layout from '../../../components/Layout'
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
+import fetch from 'isomorphic-unfetch'
 import fetcher from '../../../helpers/fetcher'
 import Document from '../../../components/Document'
 
