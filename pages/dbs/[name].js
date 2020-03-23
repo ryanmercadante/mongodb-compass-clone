@@ -4,6 +4,7 @@ import useSWR from 'swr'
 import CollectionItem from '../../components/CollectionItem'
 import CollectionHeader from '../../components/CollectionHeader'
 import fetcher from '../../helpers/fetcher'
+import fetch from 'isomorphic-unfetch'
 
 const Collections = ({ data }) => {
   const router = useRouter()

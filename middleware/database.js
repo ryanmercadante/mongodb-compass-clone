@@ -5,7 +5,7 @@ import { config } from '../pages/index'
 console.log(config.global_hostname)
 console.log(config.global_port)
 
-const mongoUri = `mongodb://${config.global_hostname}:${config.global_port}/`
+const mongoUri = `mongodb://localhost:27017/`
 
 const client = new MongoClient(mongoUri, {
   useNewUrlParser: true,

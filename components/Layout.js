@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 import Sidebar from './Sidebar'
 
+import '../assets/style.css'
+
 const Layout = ({ children, data }) => {
   return (
     <Fragment>
@@ -9,22 +11,12 @@ const Layout = ({ children, data }) => {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className='content'>
+      <div className='flex h-screen overflow-y-hidden'>
         <Sidebar dbs={data} />
-        <main className='data-view'>
+        <main className='content-area bg-red-300 flex-1 overflow-y-auto'>
           {children}
         </main>
       </div>
-      <style jsx>{`
-        .content {
-          display: flex;
-        }
-        .data-view {
-          flex: 1;
-          height: 100vh;
-          background-color: #ededed;
-        }
-      `}</style>
     </Fragment>
   )
 }

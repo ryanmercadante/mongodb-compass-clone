@@ -11,13 +11,15 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.9",
+    "autoprefixer": "^9.7.4",
     "isomorphic-unfetch": "^3.0.0",
     "mongodb": "^3.5.5",
     "next": "9.3.0",
     "next-connect": "^0.6.0",
     "react": "16.13.0",
     "react-dom": "16.13.0",
-    "swr": "^0.1.18"
+    "swr": "^0.1.18",
+    "tailwindcss": "^1.2.0"
   },
   "devDependencies": {
     "@zeit/next-css": "^1.0.1"

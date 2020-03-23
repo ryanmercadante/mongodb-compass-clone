@@ -1,9 +1,11 @@
 import { Fragment } from "react"
 import Link from 'next/link'
 
+import '../assets/style.css'
+
 const MenuItem = ({ name }) => (
   <Fragment>
-    <li className='side-nav__item'>
+    <li className='text-center'>
       <Link href='/dbs/[name]' as={`/dbs/${name}`}>
         <a className='side-nav__link'>{name}</a>
       </Link>
@@ -36,7 +38,7 @@ const MenuItem = ({ name }) => (
 const Sidebar = ({ dbs }) => {
   return (
     <Fragment>
-      <nav className='sidebar'>
+      <nav className='sidebar bg-red-500 overflow-y-auto'>
         <ul className='side-nav'>
           {
             dbs.map((db) => (
