@@ -32,15 +32,6 @@ const CollectionHeader = () => {
           <h3>Total Index Size</h3>
         </div>
       </div>
-      <style jsx>{`
-      
-      
-        
-      
-        .column {
-          height: 50px;
-        }
-      `}</style>
     </Fragment>
   )
 }

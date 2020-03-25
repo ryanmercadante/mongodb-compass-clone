@@ -4,9 +4,6 @@ import { useState } from 'react'
 let global_hostname = 'localhost'
 let global_port = '27017'
 
-
-
-
 const Home = ({ data }) => {
   const [hostname, setHostname] = useState('localhost')
   const [port, setPort] = useState('27017')
