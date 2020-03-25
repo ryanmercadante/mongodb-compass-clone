@@ -95,10 +95,5 @@ export const config = {
 
 console.log('config', config)
 
-// Home.getInitialProps = async () => {
-//   const res = await fetch('http://localhost:3000/api/databases')
-//   const json = await res.json()
-//   return { data: json }
-// }
 
 export default Home

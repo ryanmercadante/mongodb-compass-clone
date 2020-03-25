@@ -7,13 +7,13 @@ import fetcher from '../../../helpers/fetcher'
 import Document from '../../../components/Document'
 
 
-const Documents = ({ data: sidebar }) => {
+const Documents = ({ dbs }) => {
   const router = useRouter()
   const { collection, db } = router.query
   const { data, error } = useSWR(`/api/documents/${collection}?db=${db}`, fetcher)
 
   return (
-    <Layout data={sidebar}>
+    <Layout dbs={dbs}>
       <Fragment>
         <h1>{db}.{collection}</h1>
         <div className="header">
@@ -50,12 +50,6 @@ const Documents = ({ data: sidebar }) => {
       </Fragment>
     </Layout>
   )
-}
-
-Documents.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3000/api/databases')
-  const json = await res.json()
-  return { data: json }
 }
 
 export default Documents

@@ -4,7 +4,7 @@ import Sidebar from './Sidebar'
 
 import '../assets/style.css'
 
-const Layout = ({ children, data }) => {
+const Layout = ({ children, dbs }) => {
   return (
     <Fragment>
       <Head>
@@ -12,8 +12,8 @@ const Layout = ({ children, data }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className='flex h-screen overflow-y-hidden'>
-        <Sidebar dbs={data} />
-        <main className='content-area bg-red-300 flex-1 overflow-y-auto'>
+        <Sidebar dbs={dbs} />
+        <main className='content-area bg-gray-200 flex-1 overflow-y-auto'>
           {children}
         </main>
       </div>
