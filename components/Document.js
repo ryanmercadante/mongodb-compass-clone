@@ -6,9 +6,6 @@ const Document = ({ doc }) => {
   const handleOnClick = (val) => {
     console.log('val', val)
     setIsVisible(!isVisible)
-    if ((val === 'Array' || val === 'Object')) {
-      console.log('click')
-    }
   }
 
   const returnObjOrArr = (val) => {
@@ -31,8 +28,6 @@ const Document = ({ doc }) => {
     if (typeof (value) === 'object') {
       value = returnObjOrArr(value)
     }
-    console.log('key', key)
-    console.log('value', value)
     return [key, value]
   }
 
@@ -43,30 +38,31 @@ const Document = ({ doc }) => {
   }
 
   const renderDoc = (key, value, display = true) => {
-    const [newKey, newValue] = handleKeyValueTransform(key, value)
-    if (typeof (newValue) === 'object') {
-      if (Array.isArray(newValue)) {
-        newValue.map((val, i) => renderDoc(i, val, false))
+    // const [newKey, newValue] = handleKeyValueTransform(key, value)
+    console.log('typeof new value', typeof (value))
+    if (typeof (value) === 'object') {
+      if (Array.isArray(value)) {
+        value.map((val, i) => renderDoc(i, val, false))
       } else {
-        renderSubDoc(newKey, newValue)
+        renderSubDoc(key, value)
       }
     }
 
     return (
       <Fragment>
         <div
-          key={newKey}
-          id={`${returnObjOrArr(newValue) ? 'sub-fields' : ''}`}
+          key={key}
+          id={`${returnObjOrArr(value) ? 'sub-fields' : ''}`}
           className={!display ? `${isVisible ? 'block pl-6' : 'hidden'}` : ''}
-          onClick={() => handleOnClick(newValue)}
+          onClick={() => handleOnClick(value)}
         >
-          <p className='m-0 text-xl flex font-bold'>{newKey}:&nbsp;
+          <p className='m-0 text-xl flex font-bold'>{key}:&nbsp;
             <span className='flex font-normal'>
-              {typeof (newValue) !== 'object' ? newValue : returnObjOrArr(newValue)}
+              {typeof (value) !== 'object' ? value : returnObjOrArr(value)}
             </span>
           </p>
-          {typeof (newValue) === 'object' && (
-            renderSubDoc(newKey, newValue)
+          {typeof (value) === 'object' && (
+            renderSubDoc(key, value)
           )}
         </div>
         <style jsx>{`
