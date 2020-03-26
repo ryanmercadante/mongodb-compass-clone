@@ -1,17 +1,4 @@
-import { Fragment } from "react"
-import Link from 'next/link'
-
-import '../assets/style.css'
-
-const MenuItem = ({ name }) => (
-  <Fragment>
-    <li className='text-center'>
-      <Link href='/dbs/[name]' as={`/dbs/${name}`}>
-        <a className='relative mb-2 text-gray-200 uppercase block py-6 px-12 text-2xl hover:text-orange-400'>{name}</a>
-      </Link>
-    </li>
-  </Fragment>
-)
+import MenuItem from './MenuItem'
 
 const Sidebar = ({ dbs }) => {
   return (
