@@ -1,9 +1,5 @@
 import { MongoClient } from 'mongodb'
 import nextConnect from 'next-connect'
-import { config } from '../pages/index'
-
-console.log(config.global_hostname)
-console.log(config.global_port)
 
 const mongoUri = `mongodb://localhost:27017/`
 
@@ -19,7 +15,6 @@ async function database(req, res, next) {
     }
   
     req.dbClient = client
-    // req.db = client.db('test')
   
     return next()
   } catch (err) {
