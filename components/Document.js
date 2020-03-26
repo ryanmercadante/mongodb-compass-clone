@@ -6,9 +6,6 @@ const Document = ({ doc }) => {
   const handleOnClick = (val) => {
     console.log('val', val)
     setIsVisible(!isVisible)
-    if ((val === 'Array' || val === 'Object')) {
-      console.log('click')
-    }
   }
 
   const returnObjOrArr = (val) => {
@@ -33,13 +30,16 @@ const Document = ({ doc }) => {
     }
     return [key, value]
   }
+
   const renderSubDoc = (field, obj) => {
     return Object.entries(obj).map(([key, value]) => {
       return renderDoc(key, value, false)
     })
   }
+
   const renderDoc = (key, value, display = true) => {
     // const [newKey, newValue] = handleKeyValueTransform(key, value)
+    console.log('typeof new value', typeof (value))
     if (typeof (value) === 'object') {
       if (Array.isArray(value)) {
         value.map((val, i) => renderDoc(i, val, false))
@@ -52,60 +52,34 @@ const Document = ({ doc }) => {
       <Fragment>
         <div
           key={key}
-          id={!display ? `${isVisible ? 'show' : 'hide'}` : ''}
-          className={`${returnObjOrArr(value) ? 'sub-fields' : ''}`}
+          id={`${returnObjOrArr(value) ? 'sub-fields' : ''}`}
+          className={!display ? `${isVisible ? 'block pl-6' : 'hidden'}` : ''}
           onClick={() => handleOnClick(value)}
         >
-          <p className='key'>{key}:&nbsp;
-            <span className='value'>{typeof (value) !== 'object' ? value : returnObjOrArr(value)}</span>
+          <p className='m-0 text-xl flex font-bold'>{key}:&nbsp;
+            <span className='flex font-normal'>
+              {typeof (value) !== 'object' ? value : returnObjOrArr(value)}
+            </span>
           </p>
           {typeof (value) === 'object' && (
             renderSubDoc(key, value)
           )}
         </div>
         <style jsx>{`
-          p {
-            margin: 0;
-          }
-          .key {
-            font-weight: 600;
-            font-size: 1.3rem;
-            display: flex;
-          }
-          .value {
-            font-weight: 400;
-            display: flex;
-          }
-          #hide {
-            display: none;
-          }
-          #show {
-            display: block;
-            padding-left: 1.5rem;
-          }
-          .sub-fields {
+          #sub-fields {
             cursor: pointer;
           }
         `}</style>
       </Fragment>
     )
   }
+
   return (
-    <Fragment>
-      <div className='document'>
-        {Object.entries(doc).map(([key, value]) => {
-          return renderDoc(key, value, true)
-        })}
-      </div>
-      <style jsx>{`
-        .document {
-          margin: 1rem 3rem;
-          padding: 1.5rem 5rem;
-          background-color: #fff;
-          border-radius: .5rem;
-        }
-      `}</style>
-    </Fragment>
+    <div className='my-4 mx-12 bg-white rounded-lg py-6 pl-20 shadow'>
+      {Object.entries(doc).map(([key, value]) => {
+        return renderDoc(key, value, true)
+      })}
+    </div>
   )
 }
 

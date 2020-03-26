@@ -2,29 +2,21 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 import Sidebar from './Sidebar'
 
-const Layout = ({ children, data }) => {
+import '../assets/style.css'
+
+const Layout = ({ children, dbs }) => {
   return (
     <Fragment>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className='content'>
-        <Sidebar dbs={data} />
-        <main className='data-view'>
+      <div className='flex h-screen overflow-y-hidden'>
+        <Sidebar dbs={dbs} />
+        <main className='content-area bg-gray-200 flex-1 overflow-y-auto'>
           {children}
         </main>
       </div>
-      <style jsx>{`
-        .content {
-          display: flex;
-        }
-        .data-view {
-          flex: 1;
-          height: 100vh;
-          background-color: #ededed;
-        }
-      `}</style>
     </Fragment>
   )
 }

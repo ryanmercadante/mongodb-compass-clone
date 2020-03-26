@@ -1,7 +1,11 @@
 import { MongoClient } from 'mongodb'
 import nextConnect from 'next-connect'
+import { config } from '../pages/index'
 
-const mongoUri = 'mongodb://localhost:27017/test'
+console.log(config.global_hostname)
+console.log(config.global_port)
+
+const mongoUri = `mongodb://localhost:27017/`
 
 const client = new MongoClient(mongoUri, {
   useNewUrlParser: true,
@@ -9,14 +13,18 @@ const client = new MongoClient(mongoUri, {
 })
 
 async function database(req, res, next) {
-  if (!client.isConnected()) {
-    await client.connect()
+  try {
+    if (!client.isConnected()) {
+      await client.connect()
+    }
+  
+    req.dbClient = client
+    // req.db = client.db('test')
+  
+    return next()
+  } catch (err) {
+    console.error('ERROR:', err)
   }
-
-  req.dbClient = client
-  req.db = client.db('test')
-
-  return next()
 }
 
 const middleware = nextConnect()

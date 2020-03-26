@@ -7,10 +7,11 @@ config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatica
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, data } = this.props
+
     return (
       <Fragment>
-        <Component {...pageProps} />
+        <Component {...pageProps} dbs={data} />
         <style jsx global>{`
         html,
         body {
@@ -32,6 +33,12 @@ class MyApp extends App {
       </Fragment>
     )
   }
+}
+
+MyApp.getInitialProps = async () => {
+  const res = await fetch('http://localhost:3000/api/databases')
+  const json = await res.json()
+  return { data: json }
 }
 
 export default MyApp
